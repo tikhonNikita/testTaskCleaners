@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mariadb:10.2
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: database_development
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+
+  server-app:
+    build: server/
+    image: dry-cleaning-server
+    depends_on:
+      - mysql
+      - redis
+    ports:
+    - "4000:4000"
+
+  post-server:
+    build: post-server/
+    image: dry-cleaning-post-server
+    depends_on:
+      - redis
+    ports:
+    - "5000:5000"
+    
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
