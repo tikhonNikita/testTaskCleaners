@@ -11,7 +11,7 @@ Now requests from app go to server that was deployed on Heroku
 To connect app with local BE you should do the following steps:
 1. Make sure that app and BE are in the same network
 2. Get you local IP address (run 'hostname -I | cut -d' ' -f1' on linux)
-3. Replace value of variable appURL with your result from step 3 to  /mobile/src/constants/constants.ts. It should be like 'http://192.168.0.106:4000/' 
+3. Replace value of variable appURL with your result from step 2 to  /mobile/src/constants/constants.ts. It should be like 'http://192.168.0.106:4000/' 
 
 
 # Backend
